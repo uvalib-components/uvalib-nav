@@ -3,12 +3,18 @@
   "description": "Navigation content component",
   "main": "uvalib-nav.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0"
+    "polymer": "Polymer/polymer#^1.4.0",
+    "polymer-font-awesome-icons": "uvalib-components/font-awesome-polymer-icons#^4.2.0-b2",
+    "paper-icon-button": "PolymerElements/paper-icon-button#^1.1.2"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
     "web-component-tester": "^4.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "resolutions": {
+    "polymer": "1.6.1",
+    "webcomponentsjs": "^0.7.0"
   }
 }

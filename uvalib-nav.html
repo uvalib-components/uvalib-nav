@@ -1,28 +1,99 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../polymer-font-awesome-icons/fa-icons.html">
 
 <!--
 `uvalib-nav`
 Navigation content component
+### Styling
+
+The following custom properties are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--uvalib-nav-color` | Color of navigation text | white
+`--uvalib-nav-bkgrd-color` | Background color of navigation section | blue
+`--uvalib-nav-padding` | Padding around each navigation item | 8px
+`--uvalib-nav-submenu-min-width` | Minimum width for submenu content | 160px
 
 @demo demo/index.html
 -->
 
 <dom-module id="uvalib-nav">
   <template>
-    <style>
+    <style is="custom-style">
       :host {
         display: block;
+        --uvalib-nav-color: white;
+        --uvalib-nav-bkgrd-color: blue;
+        --uvalib-nav-padding: 8px;
+        --uvalib-nav-submenu-min-width: 160px;
+      }
+      .navigation ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      li {
+        list-style: none;
+        float: left;
+      }
+      li a, .submenu-nav {
+        display: inline-block;
+        color: var(--uvalib-nav-color);
+        background-color: var(--uvalib-nav-bkgrd-color);
+        text-align: center;
+        padding: var(--uvalib-nav-padding);
+        text-decoration: none;
+      }
+      li a:hover, .submenu:hover .submenu-nav {
+          background-color: red;
+      }
+      li.submenu {
+        display: inline-block;
+      }
+      .submenu-list {
+        display: none;
+        position: absolute;
+        background-color: var(--uvalib-nav-bkgrd-color);
+        min-width: var(--uvalib-nav-submenu-min-width);
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      }
+      .submenu-list a {
+        color: var(--uvalib-nav-color);
+        padding: var(--uvalib-nav-padding);
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+      .submenu-list a:hover {
+        background-color: var(--uvalib-nav-bkgrd-color);
+      }
+      .submenu:hover .submenu-list {
+          display: block;
       }
     </style>
     <nav>
-      <template is="dom-if" if="{{includeSearch}}">
-        <a href="">Icon reference goes here.</a>
-      </template>
-      <ul>
-        loop through the object elements to generate the navigation.
-        If an object item is an array then generate a nested list?
-        <li>
-        </li>
+      <ul class="navigation">
+        <template is="dom-if" if="{{includeSearch}}">
+          <li><a href="{{searchCode}}"><paper-icon-button icon="fa-search" alt="Search Virgo"></paper-icon-button></a></li>
+        </template>
+        <template is="dom-repeat" items="{{navigation}}" as="nav">
+          <template is="dom-if" if="{{nav.url}}">
+            <li><a href="{{nav.url}}">{{nav.label}}</a></li>
+          </template>
+          <template is="dom-if" if="{{nav.submenu}}">
+            <li class="submenu">
+              <a href="#" class="submenu-nav">{{nav.label}}</a>
+              <div class="submenu-list">
+                <template is="dom-repeat" items="{{nav.submenu}}" as="subnav">
+                  <a href="{{subnav.url}}">{{subnav.label}}</a>
+                </template>
+              </div>
+            </li>
+          </template>
+        </template>
       </ul>
     </nav>
   </template>
@@ -33,19 +104,33 @@ Navigation content component
       is: 'uvalib-nav',
 
       properties: {
+        /**
+         * Array of JSON items that represent the navigation. Each JSON item has a label property and either a url property or a submenu property. The submenu property would contain an array of JSON items containing label and url properties.
+         */
         navigation: {
-          type: Object,
-          value: {
-            'About': '',
-            'Collections': '',
-            'Research': '',
-            'Services': ''
-          },
+          type: Array,
+          value: [
+            {"label": "About", "url": "//www.library.virginia.edu/about/"},
+            {"label": "Collections", "url": "//www.library.virginia.edu/collections/"},
+            {"label": "Research", "url": "//www.library.virginia.edu/research/"},
+            {"label": "Services", "url": "//www.library.virginia.edu/services/"}
+          ],
         },
 
+        /**
+         * Indicates that a search icon should be displayed at the start of the navigation.
+         */
         includeSearch: {
           type: Boolean,
           value: false
+        },
+
+        /**
+         * The JavaScript code to use for invoking the search when the icon is selected.
+         */
+        searchCode: {
+          type: String,
+          value: ""
         }
       },
 
