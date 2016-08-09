@@ -1,0 +1,54 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`uvalib-nav`
+Navigation content component
+
+@demo demo/index.html
+-->
+
+<dom-module id="uvalib-nav">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <nav>
+      <template is="dom-if" if="{{includeSearch}}">
+        <a href="">Icon reference goes here.</a>
+      </template>
+      <ul>
+        loop through the object elements to generate the navigation.
+        If an object item is an array then generate a nested list?
+        <li>
+        </li>
+      </ul>
+    </nav>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'uvalib-nav',
+
+      properties: {
+        navigation: {
+          type: Object,
+          value: {
+            'About': '',
+            'Collections': '',
+            'Research': '',
+            'Services': ''
+          },
+        },
+
+        includeSearch: {
+          type: Boolean,
+          value: false
+        }
+      },
+
+    });
+  </script>
+</dom-module>
