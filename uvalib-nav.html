@@ -1,100 +1,57 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../polymer-font-awesome-icons/fa-icons.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
 
 <!--
 `uvalib-nav`
 Navigation content component
-### Styling
-
-The following custom properties are available for styling:
-
-Custom property | Description | Default
-----------------|-------------|----------
-`--uvalib-nav-color` | Color of navigation text | white
-`--uvalib-nav-bkgrd-color` | Background color of navigation section | blue
-`--uvalib-nav-padding` | Padding around each navigation item | 8px
-`--uvalib-nav-submenu-min-width` | Minimum width for submenu content | 160px
 
 @demo demo/index.html
 -->
 
 <dom-module id="uvalib-nav">
   <template>
-    <style is="custom-style">
+    <style is="custom-style" include="iron-flex iron-flex-alignment">
       :host {
         display: block;
-        --uvalib-nav-color: white;
-        --uvalib-nav-bkgrd-color: blue;
-        --uvalib-nav-padding: 8px;
-        --uvalib-nav-submenu-min-width: 160px;
       }
-      .navigation ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
+      .navigation {
+        --paper-tabs: {
+          background-color: var(--color-secondary-blue);
+          color: var(--color-white);
+        }
       }
-      li {
-        list-style: none;
-        float: left;
+      paper-tab.iron-selected {
+        background-color: var(--color-secondary-blue);
+        color: var(--color-white);
+
       }
-      li a, .submenu-nav {
-        display: inline-block;
-        color: var(--uvalib-nav-color);
-        background-color: var(--uvalib-nav-bkgrd-color);
-        text-align: center;
-        padding: var(--uvalib-nav-padding);
+      .link {
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+      }
+      a {
+        color: var(--color-white);
         text-decoration: none;
-      }
-      li a:hover, .submenu:hover .submenu-nav {
-        background-color: var(--uvalib-nav-bkgrd-color);
-      }
-      li.submenu {
-        display: inline-block;
-      }
-      .submenu-list {
-        display: none;
-        position: absolute;
-        background-color: var(--uvalib-nav-bkgrd-color);
-        min-width: var(--uvalib-nav-submenu-min-width);
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      }
-      .submenu-list a {
-        color: var(--uvalib-nav-color);
-        padding: var(--uvalib-nav-padding);
-        text-decoration: none;
-        display: block;
-        text-align: left;
-      }
-      .submenu-list a:hover {
-        background-color: var(--uvalib-nav-bkgrd-color);
-      }
-      .submenu:hover .submenu-list {
-          display: block;
       }
     </style>
     <nav>
-      <ul class="navigation">
+      <paper-tabs class="navigation" selected="{{selectedTab}}" no-bar no-slide autoselect>
         <template is="dom-if" if="{{includeSearch}}">
-          <li><a href="{{searchCode}}"><paper-icon-button icon="fa-search" alt="Search Virgo"></paper-icon-button></a></li>
+          <paper-tab>
+            <a href="{{searchCode}}" class="link" tabindex="-1"><paper-icon-button icon="search" alt="Search Virgo"></paper-icon-button></a>
+          </paper-tab>
         </template>
         <template is="dom-repeat" items="{{navigation}}" as="nav">
-          <template is="dom-if" if="{{nav.url}}">
-            <li><a href="{{nav.url}}">{{nav.label}}</a></li>
-          </template>
-          <template is="dom-if" if="{{nav.submenu}}">
-            <li class="submenu">
-              <a href="#" class="submenu-nav">{{nav.label}}</a>
-              <div class="submenu-list">
-                <template is="dom-repeat" items="{{nav.submenu}}" as="subnav">
-                  <a href="{{subnav.url}}">{{subnav.label}}</a>
-                </template>
-              </div>
-            </li>
-          </template>
+          <paper-tab>
+            <a href="{{nav.url}}" class="link" tabindex="-1"><h4>{{nav.label}}</h4></a>
+          </paper-tab>
         </template>
-      </ul>
+      </paper-tabs>
     </nav>
   </template>
 
@@ -131,6 +88,11 @@ Custom property | Description | Default
         searchCode: {
           type: String,
           value: ""
+        },
+
+        selectedTab: {
+          type: String,
+          value: '0'
         }
       },
 
