@@ -41,14 +41,14 @@ Navigation content component
     </style>
     <nav>
       <paper-tabs class="navigation" selected="{{selectedTab}}" no-bar no-slide autoselect>
-        <template is="dom-if" if="{{includeSearch}}">
-          <paper-tab>
-            <a href="{{searchCode}}" class="link" tabindex="-1"><paper-icon-button icon="search" alt="Search Virgo"></paper-icon-button></a>
-          </paper-tab>
-        </template>
         <template is="dom-repeat" items="{{navigation}}" as="nav">
           <paper-tab>
             <a href="{{nav.url}}" class="link" tabindex="-1"><h4>{{nav.label}}</h4></a>
+          </paper-tab>
+        </template>
+        <template is="dom-if" if="{{includeSearch}}">
+          <paper-tab class="search">
+            <a href="{{searchCode}}" class="link" tabindex="-1"><paper-icon-button icon="search" alt="Search Virgo"></paper-icon-button></a>
           </paper-tab>
         </template>
       </paper-tabs>
