@@ -35,24 +35,50 @@ Navigation content component
         @apply(--layout-horizontal);
         @apply(--layout-center-center);
       }
-      a {
+      paper-tab a {
         color: var(--color-white);
         text-decoration: none;
       }
+      paper-menu a {
+        @apply(--font-menu);
+        text-decoration: none;
+      }
+      paper-icon-item {
+        display: block;
+        padding: 10px;
+      }
+      paper-icon-item iron-icon {
+        color: var(--color-text-gray);
+        padding-right: 20px;
+      }
     </style>
     <nav role="navigation">
-      <paper-tabs class="navigation" selected="{{selectedTab}}" sticky no-bar noink no-slide autoselect>
-        <template is="dom-repeat" items="{{navigation}}" as="nav">
-          <paper-tab>
-            <a href="{{nav.url}}" class="link" tabindex="-1"><h4>{{nav.label}}</h4></a>
-          </paper-tab>
-        </template>
-        <template is="dom-if" if="{{includeSearch}}">
-          <paper-tab class="search">
-            <a href="{{searchCode}}" class="link" tabindex="-1"><paper-icon-button icon="search" alt="Search Virgo"></paper-icon-button></a>
-          </paper-tab>
-        </template>
-      </paper-tabs>
+      <template is="dom-if" if="{{mobileLayout}}">
+        <paper-menu>
+          <template is="dom-repeat" items="{{navigation}}" as="nav">
+              <paper-icon-item>
+                <a href="{{nav.url}}" tabindex="-1">
+                  <iron-icon icon="{{nav.icon}}" item-icon></iron-icon>
+                  {{nav.label}}
+                </a>
+              </paper-icon-item>
+          </template>
+        </paper-menu>
+      </template>
+      <template is="dom-if" if="{{!mobileLayout}}">
+        <paper-tabs class="navigation" selected="{{selectedTab}}" sticky no-bar noink no-slide autoselect>
+          <template is="dom-repeat" items="{{navigation}}" as="nav">
+            <paper-tab>
+              <a href="{{nav.url}}" class="link" tabindex="-1"><h4>{{nav.label}}</h4></a>
+            </paper-tab>
+          </template>
+          <template is="dom-if" if="{{includeSearch}}">
+            <paper-tab class="search">
+              <a href="{{searchCode}}" class="link" tabindex="-1"><paper-icon-button icon="search" alt="Search Virgo"></paper-icon-button></a>
+            </paper-tab>
+          </template>
+        </paper-tabs>
+      </template>
     </nav>
   </template>
 
@@ -68,11 +94,16 @@ Navigation content component
         navigation: {
           type: Array,
           value: [
-            {"label": "About", "url": "//www.library.virginia.edu/about/"},
-            {"label": "Research", "url": "//www.library.virginia.edu/research/"},
-            {"label": "Collections", "url": "//www.library.virginia.edu/collections/"},
-            {"label": "Services", "url": "//www.library.virginia.edu/services/"}
+            {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about/"},
+            {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
+            {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
+            {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
           ],
+        },
+
+        mobileLayout: {
+          type: Boolean,
+          value: false
         },
 
         /**
