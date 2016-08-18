@@ -21,12 +21,12 @@ Navigation content component
       }
       .navigation {
         --paper-tabs: {
-          background-color: var(--color-secondary-blue);
+          background-color: var(--color-primary-blue);
           color: var(--color-white);
         }
       }
       paper-tab.iron-selected {
-        background-color: var(--color-secondary-blue);
+        background-color: var(--color-primary-blue);
         color: var(--color-white);
 
       }
@@ -40,7 +40,7 @@ Navigation content component
       }
     </style>
     <nav>
-      <paper-tabs class="navigation" selected="{{selectedTab}}" no-bar no-slide autoselect>
+      <paper-tabs class="navigation" selected="{{selectedTab}}" sticky no-bar noink no-slide autoselect>
         <template is="dom-repeat" items="{{navigation}}" as="nav">
           <paper-tab>
             <a href="{{nav.url}}" class="link" tabindex="-1"><h4>{{nav.label}}</h4></a>
@@ -68,8 +68,8 @@ Navigation content component
           type: Array,
           value: [
             {"label": "About", "url": "//www.library.virginia.edu/about/"},
-            {"label": "Collections", "url": "//www.library.virginia.edu/collections/"},
             {"label": "Research", "url": "//www.library.virginia.edu/research/"},
+            {"label": "Collections", "url": "//www.library.virginia.edu/collections/"},
             {"label": "Services", "url": "//www.library.virginia.edu/services/"}
           ],
         },
