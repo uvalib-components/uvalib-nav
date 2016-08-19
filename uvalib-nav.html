@@ -73,7 +73,7 @@ Navigation content component
           </template>
           <template is="dom-if" if="{{includeSearch}}">
             <paper-tab class="search">
-              <a href="{{searchCode}}" class="link" tabindex="-1"><paper-icon-button icon="search" alt="Search Virgo"></paper-icon-button></a>
+              <paper-icon-button icon="search" alt="Search Virgo" on-tap="showSearch"></paper-icon-button>
             </paper-tab>
           </template>
         </paper-tabs>
@@ -113,19 +113,15 @@ Navigation content component
           value: false
         },
 
-        /**
-         * The JavaScript code to use for invoking the search when the icon is selected.
-         */
-        searchCode: {
-          type: String,
-          value: ""
-        },
-
         selectedTab: {
           type: String,
           value: '0'
         }
       },
+
+      showSearch: function(e) {
+        this.fire('show-search');
+      }
 
     });
   </script>
