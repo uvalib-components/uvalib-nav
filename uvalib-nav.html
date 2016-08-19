@@ -53,7 +53,7 @@ Navigation content component
       }
     </style>
     <nav role="navigation">
-      <template is="dom-if" if="{{mobileLayout}}">
+      <template is="dom-if" if="{{stacked}}">
         <paper-menu>
           <template is="dom-repeat" items="{{navigation}}" as="nav">
               <paper-icon-item>
@@ -65,7 +65,7 @@ Navigation content component
           </template>
         </paper-menu>
       </template>
-      <template is="dom-if" if="{{!mobileLayout}}">
+      <template is="dom-if" if="{{!stacked}}">
         <paper-tabs class="navigation" selected="{{selectedTab}}" sticky no-bar noink no-slide autoselect>
           <template is="dom-repeat" items="{{navigation}}" as="nav">
             <paper-tab>
@@ -101,7 +101,7 @@ Navigation content component
           ],
         },
 
-        mobileLayout: {
+        stacked: {
           type: Boolean,
           value: false
         },
