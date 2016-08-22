@@ -66,7 +66,7 @@ Navigation content component
         </paper-menu>
       </template>
       <template is="dom-if" if="{{!stacked}}">
-        <paper-tabs class="navigation" selected="{{selectedTab}}" sticky no-bar noink no-slide autoselect>
+        <paper-tabs class="navigation" sticky no-bar noink no-slide autoselect>
           <template is="dom-repeat" items="{{navigation}}" as="nav">
             <paper-tab>
               <a href="{{nav.url}}" class="link" tabindex="-1"><h4>{{nav.label}}</h4></a>
