@@ -21,21 +21,21 @@ Navigation content component
       .navigation {
         --paper-tabs: {
           background-color: var(--color-primary-blue);
-          color: var(--color-white);
+          color: var(--color-white) !important;
           font-size: 24px;
         }
       }
       paper-tab.iron-selected {
         background-color: var(--color-primary-blue);
-        color: var(--color-white);
+        color: var(--color-white) !important;
         font-weight: normal;
       }
       .link {
         @apply(--layout-horizontal);
         @apply(--layout-center-center);
       }
-      paper-tab a {
-        color: var(--color-white);
+      paper-tab a, paper-tab h4 {
+        color: var(--color-white) !important;
         text-decoration: none;
       }
       paper-menu a {
@@ -47,7 +47,7 @@ Navigation content component
         padding: 10px;
       }
       paper-icon-item iron-icon {
-        color: var(--color-text-gray);
+        color: var(--color-text-gray) !important;
         padding-right: 20px;
       }
     </style>
