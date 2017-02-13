@@ -1,6 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../paper-menu/paper-menu.html">
 <link rel="import" href="../uvalib-theme/uvalib-theme.html">
 <link rel="import" href="../uvalib-theme/uvalib-icons.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
@@ -19,27 +19,25 @@ Navigation content component
         display: block;
       }
       .navigation {
-        --paper-tabs: {
-          background-color: var(--color-primary-blue);
-          color: var(--color-white) !important;
-          font-size: 24px;
-        }
-      }
-      paper-tab.iron-selected {
-        background-color: var(--color-primary-blue);
-        color: var(--color-white) !important;
-        font-weight: normal;
-      }
-      .link {
         @apply(--layout-horizontal);
         @apply(--layout-center-center);
+        background-color: var(--color-primary-blue);
+        color: var(--color-white) !important;
+        font-size: 24px;
       }
-      paper-tab a, paper-tab h4 {
+      .item {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .item a, .item h4 {
         color: var(--color-white) !important;
         text-decoration: none;
         font-style: normal !important;
       }
-      paper-menu a {
+      paper-icon-button {
+        --paper-icon-button-ink-color: var(--color-accessibility-outline);
+      }
+      .mobile a {
         @apply(--font-menu);
         text-decoration: none;
       }
@@ -55,7 +53,7 @@ Navigation content component
 
     <nav role="navigation">
       <template is="dom-if" if="{{stacked}}">
-        <paper-menu>
+        <paper-menu class="mobile">
           <template is="dom-repeat" items="{{navigation}}" as="nav">
               <paper-icon-item>
                 <a href="{{nav.url}}" tabindex="-1">
@@ -67,18 +65,18 @@ Navigation content component
         </paper-menu>
       </template>
       <template is="dom-if" if="{{!stacked}}">
-        <paper-tabs class="navigation" sticky no-bar noink no-slide autoselect>
+        <div class="navigation">
           <template is="dom-repeat" items="{{navigation}}" as="nav">
-            <paper-tab>
-              <a href="{{nav.url}}" class="link" tabindex="-1"><h4>{{nav.label}}</h4></a>
-            </paper-tab>
+            <div class="item">
+              <h4 tabindex="-1"><a href="{{nav.url}}" class="link">{{nav.label}}</a></h4>
+            </div>
           </template>
           <template is="dom-if" if="{{includeSearch}}">
-            <paper-tab class="search">
+            <div class="search item">
               <paper-icon-button icon="search" alt="Search Virgo" on-tap="showSearch"></paper-icon-button>
-            </paper-tab>
+            </div>
           </template>
-        </paper-tabs>
+        </div>
       </template>
     </nav>
   </template>
