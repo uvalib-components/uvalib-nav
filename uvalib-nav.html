@@ -21,20 +21,13 @@ Navigation content component
       .navigation {
 
         @apply(--layout-horizontal);
-        /*
-        @apply(--layout-center-center);
-        */
+        @apply(--layout-center);
 
         background-color: var(--color-primary-blue);
         color: var(--color-white) !important;
         font-size: 24px;
         line-height: 20px;
       }
-      /*
-      .navigation[ie-hack] {
-        width: 75%;
-      }
-      */
       .item {
         margin-left: auto;
         margin-right: auto;
@@ -76,7 +69,7 @@ Navigation content component
         </paper-menu>
       </template>
       <template is="dom-if" if="{{!stacked}}">
-        <div class="navigation" ie-hack$="{{_ieHack}}">
+        <div class="navigation">
           <template is="dom-repeat" items="{{navigation}}" as="nav">
             <div class="item">
               <h4 tabindex="-1"><a href="{{nav.url}}" class="link">{{nav.label}}</a></h4>
@@ -124,10 +117,6 @@ Navigation content component
           value: '0'
         },
 
-        _ieHack: {
-          type: Boolean,
-          value: false
-        }
 
       },
 
@@ -135,11 +124,7 @@ Navigation content component
         this.fire('show-search');
       },
 
-      ready: function(){
-        var isIE11 = '-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style;
-        var isIElt11 = /*@cc_on!@*/false;
-        if (isIE11 || isIElt11) this._ieHack = true;
-      }
+      
 
     });
   </script>
