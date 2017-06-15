@@ -3,10 +3,34 @@
   "description": "Navigation content component",
   "main": "uvalib-nav.html",
   "dependencies": {
-    "uvalib-elements": "uvalib-components/uvalib-elements#latest"
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
   },
   "resolutions": {
     "polymer": "^1.7.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "app-storage": "^0.10.0",
+    "iron-icons": "^1.2.1",
+    "paper-tooltip": "^1.0.0",
+    "uvalib-elements": "master",
+    "uvalib-alerts": "master",
+    "uvalib-analytics": "master",
+    "uvalib-banner": "master",
+    "uvalib-button": "master",
+    "uvalib-card": "master",
+    "uvalib-events-card": "master",
+    "uvalib-footer": "master",
+    "uvalib-header": "master",
+    "uvalib-hours-card": "master",
+    "uvalib-liame": "master",
+    "uvalib-images": "master",
+    "uvalib-helper-libs": "master",
+    "uvalib-logos": "master",
+    "uvalib-news-section": "master",
+    "uvalib-nav": "master",
+    "uvalib-models": "master",
+    "uvalib-search-box": "master",
+    "uvalib-social-links": "master",
+    "uvalib-skip-nav": "master",
+    "uvalib-theme": "master"
   }
 }
