@@ -31,6 +31,7 @@
     "uvalib-search-box": "master",
     "uvalib-social-links": "master",
     "uvalib-skip-nav": "master",
-    "uvalib-theme": "master"
+    "uvalib-theme": "master",
+    "uva-footer": "master"
   }
 }
