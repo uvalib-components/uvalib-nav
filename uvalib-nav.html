@@ -27,6 +27,7 @@ Navigation content component
         color: var(--color-white) !important;
         font-size: 24px;
         line-height: 20px;
+        list-style: none;
       }
       .item {
         margin-left: auto;
@@ -69,18 +70,18 @@ Navigation content component
         </paper-menu>
       </template>
       <template is="dom-if" if="{{!stacked}}">
-        <div class="navigation">
+        <ul class="navigation">
           <template is="dom-repeat" items="{{navigation}}" as="nav">
-            <div class="item">
+            <li class="item">
               <h4 tabindex="-1"><a href="{{nav.url}}" class="link">{{nav.label}}</a></h4>
-            </div>
+            </li>
           </template>
           <template is="dom-if" if="{{includeSearch}}">
-            <div class="search item">
+            <li class="search item">
               <paper-icon-button icon="search" alt="Search Virgo" on-tap="showSearch"></paper-icon-button>
-            </div>
+            </li>
           </template>
-        </div>
+        </ul>
       </template>
     </nav>
   </template>
