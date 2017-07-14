@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../paper-menu/paper-menu.html">
+<link rel="import" href="../paper-item/paper-item.html">
 <link rel="import" href="../uvalib-theme/uvalib-theme.html">
 <link rel="import" href="../uvalib-theme/uvalib-icons.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
@@ -60,12 +61,12 @@ Navigation content component
       <template is="dom-if" if="{{stacked}}">
         <paper-menu class="mobile">
           <template is="dom-repeat" items="{{navigation}}" as="nav">
-              <paper-icon-item>
+              <paper-item>
                 <a href="{{nav.url}}" tabindex="-1">
                   <iron-icon icon="{{nav.icon}}" item-icon></iron-icon>
                   {{nav.label}}
                 </a>
-              </paper-icon-item>
+              </paper-item>
           </template>
         </paper-menu>
       </template>
